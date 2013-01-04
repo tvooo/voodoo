@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <title>VooDoo</title>
+        <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.2/underscore-min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min.js"></script>
+
+        <script src="voodoo.js"></script>
+        <script>
+
+            function auth () {
+                $(function() {
+                    voodoo( jQuery, window, gapi, _, Backbone );
+                });
+            }
+            function openDialog() {
+                beamodal.show( "#default-popup" );
+            }
+            function closeDialog() {
+                beamodal.hide();
+            }
+        </script>
+
+        <script src="https://apis.google.com/js/client.js?onload=auth"></script>
+
+        <link rel="stylesheet" href="stylesheets/font-awesome.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Cabin:400|Josefin+Slab:400' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class="row" id="app" style="top:0px">
+            <section id="lists" class="col lists scroll-y">
+                
+                <a href=""><h1>Voo<span class="strong">Do</span>o</h1></a>
+                <div class="container-btns">
+                    <a href="#" class="btn toggle-add">New list</a>
+                    <a href="#" class="">Rename</a>
+                    <a href="#" class="">Delete</a>
+                </div>
+                <input type="text" class="add add-list" placeholder="Add new list" style="display: none;">
+
+                <ul class="listlist"></ul>
+            </section>
+
+            <section id="tasks" class="col">
+                <header class="row" style="top: 0px; height: 120px;">
+                    <div style="float:left">
+                        <h2>(name of current list)</h2>
+                        <input type="text" class="add add-task" placeholder="Add new task">
+                    </div>
+                    <div style="float:right">
+                        <a href="#" class="btn purge"><i class="icon-ok"></i>Purge</a>
+                        <a href="#" class="btn refresh"><i class="icon-refresh"></i>Refresh</a>
+                    </div>
+                </header>
+                <ul class="tasklist row scroll-y" style="top: 120px; bottom: 0px"></ul>
+            </section>
+        </div>
+        <div class="login-overlay" style="display:none;">
+            <div class="centered">
+                <h2>Voo<span class="strong">Do</span>o</h2>
+                <p>Sign in with Google</p>
+                <button class="btn-auth">Sign in</button>
+                <p class="small">VooDoo is a web interface for Google Tasks. Check it out at Github. &copy; Tim von Oldenburg. <a href="http://www.tvooo.de/">tvooo.de</a></p>
+            </div>
+        </div>
+
+        <aside id="default-popup" class="beamodal-popup">
+            <h2>Bea MODAL</h2>
+            <p>
+                You can hit ESC or click outside to close the modal. Give it a go to see the reverse transition.
+            </p>
+            <p>
+                If you like this you can share it with your friends!.
+            </p>
+            <button onclick="javascript:closeDialog();">Close</button>
+        </aside>
+
+        <div class="beamodal-cover"></div>
+
+        <script type="text/javascript" src="beamodal.js"></script>
+
+        <script type="text/template" id="task-template">
+            <div class="task <%= completed ? 'completed' : '' %>">
+                <input class="toggle input-checkbox-alt" type="checkbox" <%= completed ? 'checked' : '' %>><label class="checkbox"></label>
+                <!--<i class="icon-sort"></i>-->
+                <label title="Click to edit" class="title"><%- title %></label>
+                <input class="edit" value="<%- title %>">
+                <i class="icon-trash delete"></i>
+            </div>
+        </script>
+
+        <script type="text/template" id="list-template">
+            <label class="title"><%- title %></label>
+            <input class="edit" value="<%- title %>">
+        </script>
+    </body>
+</html>

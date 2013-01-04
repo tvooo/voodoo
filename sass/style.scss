@@ -1,0 +1,408 @@
+@import "compass/utilities/general/reset";
+@import "compass/utilities/general/clearfix";
+@import "compass/css3";
+
+@import "modal";
+
+@include global-reset;
+
+$headingColor: #997766;
+$lightGreen: #e7f3d0;
+$lightGreen: #f7fbef;
+
+$grey1: #444;
+$grey2: #666;
+$grey3: #999;
+$grey5: #ccc;
+$grey6: #eee;
+$grey7: #f8f8f8;
+$blue: #3399cc;
+$green: #99cc33;
+
+$bgColor: #fff;
+$background: $grey7;
+$buttonColor: $blue;
+$linkColor: $blue;
+$linkColorHover: #58751d;
+
+$twitter: #00a0d1;
+
+$tasksBg: #fff;
+$tasksBg: url(../debut_light.png);
+
+html, body {
+    //height: 100%;
+
+}
+
+body { margin: 0 }
+.row, .col { overflow: hidden; position: absolute; }
+.row { left: 0; right: 0; }
+.col { top: 0; bottom: 0; }
+.scroll-x { overflow-x: auto; }
+.scroll-y { overflow-y: auto; }
+
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: $buttonColor;
+    &:hover {
+        color: darken($buttonColor, 10%);
+    }
+}
+
+h1 {
+    font-family: 'Josefin Slab', 'Cabin', 'Cabin Sketch', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 40px;
+    //float: left;
+    //width: 280px;
+    text-align: center;
+    margin: 12px 12px 24px 12px;
+}
+
+h2 {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 36px;
+    //margin: 12px;
+}
+
+header {
+    width: 100%;
+    box-sizing: border-box;
+    background: $grey1;
+    padding: 10px 20px 10px 20px;
+    @include clearfix;
+    &.main {
+        height: 61px;
+        top: 0px;
+    }
+    z-index: 50;
+}
+
+#app { top: 61px; bottom: 0px;}
+
+section header {
+    @include box-shadow(rgba(0,0,0,0.5) 0px 0px 10px);
+    background: #fff;
+    height: 88px;
+    width: auto;
+}
+
+.open-lists {
+    color: $blue;
+    color: #fff;
+    text-decoration: none;
+    &:hover { background: darken($blue, 10%); color: #ffffff; }
+    float: left;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.main {
+    color: #fff;
+}
+
+nav {
+    float: right;
+    margin: 10px 0px 10px 0px;
+}
+
+em {
+    font-style: italic;
+}
+
+#lists {
+    display: none;
+    width: 280px;
+    border-right: #ddd 1px solid;
+    left: 0;
+    background: $grey6;
+    ul {
+
+        li {
+            @include transition(.2s background ease, .2s border-color ease);
+            box-sizing: border-box;
+            border-width: 1px 0px;
+            border-color: transparent;
+            border-style: solid;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            //border-bottom: 1px #ddd solid;
+            &:hover {
+                background: #eee;
+            }
+            &.active {
+                background: $blue;
+                border-color: #ddd;
+                background: #fff;
+            }
+            input.edit {
+                display: none;
+            }
+        }
+    }
+}
+
+
+#tasks {
+    background: $tasksBg;
+
+    left: 0;
+    right: 0px;
+    ul.tasklist {
+        //padding: 20px;
+        li {
+            border: 1px #eee solid;
+            border-width: 0px 0px 1px 0px;
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            //margin: 0px 0px 20px 0px;
+
+            background: #ffffff;
+            i {
+                cursor: pointer;
+                &.icon-sort {
+                    cursor: move;
+                }
+                &.icon-trash {
+                    float: right;
+                }
+            }
+            padding: 20px;
+            font-size: 18px;
+            &:hover {
+                //background: #eee;
+                border-color: #ddd;
+                //@include box-shadow(1px 1px 4px rgba(0, 0, 0, 0.5));
+                i, .checkbox {
+                    color: #46a546;
+                    @include transition(.2s color ease);
+                    &:hover { color: darken(#46a546, 15%); }
+                }
+            }
+            .edit {
+                display: none;
+            }
+            .title {
+                padding: 5px 20px;
+                margin-left: 5px;
+                cursor: pointer;
+                &:hover {
+                    background: $grey6;
+                }
+
+            }
+            .completed {
+                color: #999;
+                .title {
+                    text-decoration: line-through;
+                }
+            }
+        }
+    }
+
+    .btn-wrapper {
+        width: 60;
+        height: 60;
+        padding: 0px 20px 0px 20px;
+        box-sizing: border-box;
+    }
+}
+
+.container-btns {
+    margin: 12px;
+}
+
+.btn-auth {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    margin-top: -50px;
+    left: 50%;
+    margin-left: -50px;
+    position: absolute;
+}
+
+.strong {
+    font-weight: 400;
+    color: $grey3;
+}
+
+.clear {
+    clear: both;
+    overflow: auto;
+    height: 100%;
+}
+
+.btn {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 4px 8px 4px 8px;
+    border-radius: 3px;
+    //@include background(linear-gradient(top, lighten($buttonColor, 10%), $buttonColor));
+    background: $buttonColor;
+    outline: 0;
+
+    color: #ffffff;
+    font-size: 16px;
+    font-family: "calluna-sans", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    font-weight: 400;
+
+    @include transition(.2s background ease);
+    @include text-shadow(1px 1px 1px rgba(black, 0.2));
+    &:hover {
+        background: darken($buttonColor, 10%);
+        color: #ffffff;
+    }
+
+    i {
+        margin-right: 5px;
+    }
+
+    &.icon {
+        font-size: 24px;
+        line-height: 24px;
+        padding: 8px;
+    }
+
+    span {
+        padding-top: 2px;
+        float: left;
+        @include clearfix;
+    }
+    overflow: auto;
+}
+
+footer {
+    .btn-wrapper {
+        width: 280px;
+        padding: 0px 20px 0px 20px;
+        box-sizing: border-box;
+    }
+    .btn-add {
+        width: 30%;
+        height: 40px;
+    }
+    .btn-delete {
+        width: 30%;
+        height: 40px;
+        @include background(linear-gradient(top, lighten($grey5, 10%), $grey5));
+        border-color: darken($grey5, 10%);
+    }
+    .btn-edit {
+        width: 30%;
+        height: 40px;
+        @include background(linear-gradient(top, lighten($grey5, 10%), $grey5));
+        border-color: darken($grey5, 10%);
+    }
+}
+
+.placeholder {
+    border: 2px #ddd dotted;
+    margin: 10px 0px 10px 0px;
+    height: 50px;
+}
+
+.banner {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 40px;
+    background: #cc6633;
+    text-align: center;
+    display: none;
+}
+
+/* Checkbox hack */
+.input-checkbox-alt {
+  opacity: 0;
+  position: absolute;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.input-checkbox-alt + label {
+  cursor: pointer;
+  display: inline;
+  margin-left: 23px;
+}
+
+.input-checkbox-alt + label:before {
+  //color: #bbb;
+  content: "\f096"; // check-empty
+  cursor: pointer;
+  font: 17px/1em FontAwesome;
+  margin-left: -23px;
+  padding-right: 4px;
+  vertical-align: middle;
+}
+
+.input-checkbox-alt:checked + label { /*color: #444;*/ }
+.input-checkbox-alt:checked + label:before { /*color: green;*/ content: "\f046"; }
+
+/* Responsiveness */
+
+@media screen and (min-width: 800px) {
+    .open-lists { display: none; }
+    #lists { display: block;  }
+    #tasks { left: 281px; }
+}
+
+/* Login */
+
+.login-overlay {
+    background: $grey1;
+    color: #ffffff;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 3000;
+    width: 100%;
+    height: 100%;
+    .centered {
+        margin: 0 auto;
+    }
+}
+
+.add-list {
+    display: block;
+    background: transparent;
+    padding: 12px;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    background: #fff;
+    border: 1px $buttonColor solid;
+    width: 100%;
+}
+
+.add-task {
+    border: 1px #ddd solid;
+    font-size: 18px;
+    width: 100%;
+    display: block;
+    outline: 0;
+    &:focus {
+        border-color: $buttonColor;
+    }
+}
+
+.right { float: right; }
+.left  { float: left;  }
