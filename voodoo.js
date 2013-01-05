@@ -48,8 +48,10 @@ function voodoo( $, window, gapi, _, Backbone ) {
                 tasklist: this.get( 'tasklist' ),
                 resource: this.convertTo( false )
             });
+            var that = this;
             req.execute( function( res ) {
                 // refresh
+                that.set( 'id', res.id );
                 log( 'Model:Task save' );
             });
         },
@@ -236,12 +238,16 @@ function voodoo( $, window, gapi, _, Backbone ) {
         },
 
         doKeypress: function( event ) {
-            if ( event.which == 13 ) {
+            var input = $(event.target);
+            if ( event.keyCode == 13 ) {
                 event.preventDefault();
-
+                input.hide();
                 this.$('.title').show();
-                this.$('.edit').hide();
-                this.model.set( 'title', $(event.target).val() );
+                this.model.set( 'title', input.val() );
+            } else if ( event.keyCode == 27 ) {
+                event.preventDefault();
+                input.val( this.model.get( 'title' ) ).blur().hide();
+                this.$('.title').show();
             }
         },
 
@@ -257,7 +263,7 @@ function voodoo( $, window, gapi, _, Backbone ) {
         events: {
             'click input.toggle': 'toggle',
             'click .title'  : 'doEdit',
-            'keypress .edit': 'doKeypress',
+            'keyup .edit': 'doKeypress',
             'click .delete': 'doDelete'
         }
     });
@@ -298,11 +304,13 @@ function voodoo( $, window, gapi, _, Backbone ) {
         updateViews: function() {
             var that = this;
             this._taskViews = [];
-            this.collection.each(function( task ) {
-                that._taskViews.push(new TaskView({
-                    model : task
-                }));
-            });
+            if ( this.collection ) {
+                this.collection.each(function( task ) {
+                    that._taskViews.push(new TaskView({
+                        model : task
+                    }));
+                });
+            }
         },
 
         setBindings: function() {
@@ -311,16 +319,20 @@ function voodoo( $, window, gapi, _, Backbone ) {
         },
 
         doKeypress: function( event ) {
-            if ( event.which == 13 ) {
-                var title = $(event.target).val();
-                $(event.target).val('');
+            var input = $(event.target);
+            if ( event.keyCode == 13 ) {
                 event.preventDefault();
+                var title = input.val();
                 var task = new Task({
                     title: title,
                     tasklist: this.collection.id
                 });
                 task.save();
                 this.collection.unshift( task );
+                input.val('');
+            } else if ( event.keyCode == 27 ) {
+                event.preventDefault();
+                input.val( '' ).blur();
             }
         },
 
@@ -335,7 +347,7 @@ function voodoo( $, window, gapi, _, Backbone ) {
         },
 
         events: {
-            'keypress .add': 'doKeypress',
+            'keyup .add': 'doKeypress',
             'click .purge': 'doPurge',
             'click .refresh': 'doRefresh'
         }
@@ -403,6 +415,13 @@ function voodoo( $, window, gapi, _, Backbone ) {
             _(this._listViews).each( function( view ) {
                 that.$el.find('ul.listlist').append( view.render().el );
             });
+            // doActivate?
+            if (this._listViews.length > 0 ) {
+                tlview.setCollection( _.first(this._listViews).model.tasklist );
+            }
+            var lis = this.$el.find('.listlist li');
+            lis.removeClass('active');
+            lis.first().addClass('active');
         },
 
         setBindings: function() {
@@ -420,17 +439,23 @@ function voodoo( $, window, gapi, _, Backbone ) {
         },
 
         doKeypressAdd: function( event ) {
-            if ( event.which == 13 ) {
-                var title = $(event.target).val();
-                $(event.target).val('');
+            var input = $( event.target );
+            if ( event.keyCode == 13 ) {
                 event.preventDefault();
+                
+                var title = input.val();
 
                 var list = new List({
                     title: title
                 });
+
                 list.save();
                 this.collection.unshift( list );
-                $(event.target).hide();
+                input.val( '' ).blur().hide();
+                this.$('.lists .toggle-add').html( 'New list' );
+            } else if ( event.keyCode == 27 ) {
+                event.preventDefault();
+                input.val('').blur().slideUp( 300 );
                 this.$('.lists .toggle-add').html( 'New list' );
             }
         },
@@ -463,7 +488,7 @@ function voodoo( $, window, gapi, _, Backbone ) {
 
         events: {
             'click .listlist li': 'doActivate',
-            'keypress .lists .add': 'doKeypressAdd',
+            'keyup .lists .add': 'doKeypressAdd',
             'click .lists .toggle-add': 'toggleAddList',
             'click .lists .delete': 'doDeleteList',
             'click .lists .edit': 'doEdit'

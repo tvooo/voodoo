@@ -59,16 +59,20 @@ a {
     }
 }
 
-h1 {
+h1, a > h1 {
     font-family: 'Josefin Slab', 'Cabin', 'Cabin Sketch', 'Arial', sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 36px;
     line-height: 40px;
     //float: left;
     //width: 280px;
     text-align: center;
     margin: 12px 12px 24px 12px;
+    color: black;
+    text-decoration: none;
 }
+
+#lists > a { text-decoration: none; }
 
 h2 {
     font-weight: 400;
@@ -93,7 +97,7 @@ header {
 #app { top: 61px; bottom: 0px;}
 
 section header {
-    @include box-shadow(rgba(0,0,0,0.5) 0px 0px 10px);
+    @include box-shadow(0px 0px 10px rgba(0,0,0,0.2));
     background: #fff;
     height: 88px;
     width: auto;
@@ -141,7 +145,6 @@ em {
             border-style: solid;
             padding: 12px;
             font-size: 16px;
-            cursor: pointer;
             //border-bottom: 1px #ddd solid;
             &:hover {
                 background: #eee;
@@ -155,6 +158,7 @@ em {
                 display: none;
             }
         }
+        li, label { cursor: pointer; }
     }
 }
 
@@ -200,8 +204,9 @@ em {
                 display: none;
             }
             .title {
-                padding: 5px 20px;
-                margin-left: 5px;
+                //padding: 5px 20px;
+                padding: 5px;
+                //margin-left: 5px;
                 cursor: pointer;
                 &:hover {
                     background: $grey6;
@@ -399,6 +404,7 @@ footer {
     width: 100%;
     display: block;
     outline: 0;
+    padding: 12px;
     &:focus {
         border-color: $buttonColor;
     }
@@ -406,3 +412,9 @@ footer {
 
 .right { float: right; }
 .left  { float: left;  }
+
+.actions {
+    padding: 4px 0;
+}
+
+.clear { @include clearfix(); }

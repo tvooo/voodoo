@@ -35,10 +35,12 @@
             <section id="lists" class="col lists scroll-y">
                 
                 <a href=""><h1>Voo<span class="strong">Do</span>o</h1></a>
-                <div class="container-btns">
+                <div class="container-btns clear">
                     <a href="#" class="btn toggle-add">New list</a>
-                    <a href="#" class="">Rename</a>
-                    <a href="#" class="">Delete</a>
+                    <div class="right actions">
+                        <a href="#" class="">Rename</a>
+                        <a href="#" class="">Delete</a>
+                    </div>
                 </div>
                 <input type="text" class="add add-list" placeholder="Add new list" style="display: none;">
 
@@ -47,11 +49,11 @@
 
             <section id="tasks" class="col">
                 <header class="row" style="top: 0px; height: 120px;">
-                    <div style="float:left">
+                    <div>
                         <h2>(name of current list)</h2>
                         <input type="text" class="add add-task" placeholder="Add new task">
                     </div>
-                    <div style="float:right">
+                    <div class="right">
                         <a href="#" class="btn purge"><i class="icon-ok"></i>Purge</a>
                         <a href="#" class="btn refresh"><i class="icon-refresh"></i>Refresh</a>
                     </div>

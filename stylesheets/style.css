@@ -250,23 +250,30 @@ a:hover {
 }
 
 /* line 62, ../sass/style.scss */
-h1 {
+h1, a > h1 {
   font-family: 'Josefin Slab', 'Cabin', 'Cabin Sketch', 'Arial', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 36px;
   line-height: 40px;
   text-align: center;
   margin: 12px 12px 24px 12px;
+  color: black;
+  text-decoration: none;
 }
 
-/* line 73, ../sass/style.scss */
+/* line 75, ../sass/style.scss */
+#lists > a {
+  text-decoration: none;
+}
+
+/* line 77, ../sass/style.scss */
 h2 {
   font-weight: 400;
   font-size: 28px;
   line-height: 36px;
 }
 
-/* line 80, ../sass/style.scss */
+/* line 84, ../sass/style.scss */
 header {
   width: 100%;
   box-sizing: border-box;
@@ -276,29 +283,29 @@ header {
   *zoom: 1;
   z-index: 50;
 }
-/* line 86, ../sass/style.scss */
+/* line 90, ../sass/style.scss */
 header.main {
   height: 61px;
   top: 0px;
 }
 
-/* line 93, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 #app {
   top: 61px;
   bottom: 0px;
 }
 
-/* line 95, ../sass/style.scss */
+/* line 99, ../sass/style.scss */
 section header {
-  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-  box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   background: #fff;
   height: 88px;
   width: auto;
 }
 
-/* line 102, ../sass/style.scss */
+/* line 106, ../sass/style.scss */
 .open-lists {
   color: #3399cc;
   color: #fff;
@@ -310,29 +317,29 @@ section header {
   box-sizing: border-box;
   text-align: center;
 }
-/* line 106, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .open-lists:hover {
   background: #297aa3;
   color: #ffffff;
 }
 
-/* line 115, ../sass/style.scss */
+/* line 119, ../sass/style.scss */
 .main {
   color: #fff;
 }
 
-/* line 119, ../sass/style.scss */
+/* line 123, ../sass/style.scss */
 nav {
   float: right;
   margin: 10px 0px 10px 0px;
 }
 
-/* line 124, ../sass/style.scss */
+/* line 128, ../sass/style.scss */
 em {
   font-style: italic;
 }
 
-/* line 128, ../sass/style.scss */
+/* line 132, ../sass/style.scss */
 #lists {
   display: none;
   width: 280px;
@@ -340,7 +347,7 @@ em {
   left: 0;
   background: #eeeeee;
 }
-/* line 136, ../sass/style.scss */
+/* line 140, ../sass/style.scss */
 #lists ul li {
   -webkit-transition: 0.2s background ease, 0.2s border-color ease;
   -moz-transition: 0.2s background ease, 0.2s border-color ease;
@@ -352,30 +359,33 @@ em {
   border-style: solid;
   padding: 12px;
   font-size: 16px;
-  cursor: pointer;
 }
-/* line 146, ../sass/style.scss */
+/* line 149, ../sass/style.scss */
 #lists ul li:hover {
   background: #eee;
 }
-/* line 149, ../sass/style.scss */
+/* line 152, ../sass/style.scss */
 #lists ul li.active {
   background: #3399cc;
   border-color: #ddd;
   background: #fff;
 }
-/* line 154, ../sass/style.scss */
+/* line 157, ../sass/style.scss */
 #lists ul li input.edit {
   display: none;
 }
+/* line 161, ../sass/style.scss */
+#lists ul li, #lists ul label {
+  cursor: pointer;
+}
 
-/* line 162, ../sass/style.scss */
+/* line 166, ../sass/style.scss */
 #tasks {
   background: url(../debut_light.png);
   left: 0;
   right: 0px;
 }
-/* line 169, ../sass/style.scss */
+/* line 173, ../sass/style.scss */
 #tasks ul.tasklist li {
   border: 1px #eee solid;
   border-width: 0px 0px 1px 0px;
@@ -386,23 +396,23 @@ em {
   padding: 20px;
   font-size: 18px;
 }
-/* line 178, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 #tasks ul.tasklist li i {
   cursor: pointer;
 }
-/* line 180, ../sass/style.scss */
+/* line 184, ../sass/style.scss */
 #tasks ul.tasklist li i.icon-sort {
   cursor: move;
 }
-/* line 183, ../sass/style.scss */
+/* line 187, ../sass/style.scss */
 #tasks ul.tasklist li i.icon-trash {
   float: right;
 }
-/* line 189, ../sass/style.scss */
+/* line 193, ../sass/style.scss */
 #tasks ul.tasklist li:hover {
   border-color: #ddd;
 }
-/* line 193, ../sass/style.scss */
+/* line 197, ../sass/style.scss */
 #tasks ul.tasklist li:hover i, #tasks ul.tasklist li:hover .checkbox {
   color: #46a546;
   -webkit-transition: 0.2s color ease;
@@ -410,33 +420,32 @@ em {
   -o-transition: 0.2s color ease;
   transition: 0.2s color ease;
 }
-/* line 196, ../sass/style.scss */
+/* line 200, ../sass/style.scss */
 #tasks ul.tasklist li:hover i:hover, #tasks ul.tasklist li:hover .checkbox:hover {
   color: #2f6f2f;
 }
-/* line 199, ../sass/style.scss */
+/* line 203, ../sass/style.scss */
 #tasks ul.tasklist li .edit {
   display: none;
 }
-/* line 202, ../sass/style.scss */
+/* line 206, ../sass/style.scss */
 #tasks ul.tasklist li .title {
-  padding: 5px 20px;
-  margin-left: 5px;
+  padding: 5px;
   cursor: pointer;
 }
-/* line 206, ../sass/style.scss */
+/* line 211, ../sass/style.scss */
 #tasks ul.tasklist li .title:hover {
   background: #eeeeee;
 }
-/* line 211, ../sass/style.scss */
+/* line 216, ../sass/style.scss */
 #tasks ul.tasklist li .completed {
   color: #999;
 }
-/* line 213, ../sass/style.scss */
+/* line 218, ../sass/style.scss */
 #tasks ul.tasklist li .completed .title {
   text-decoration: line-through;
 }
-/* line 220, ../sass/style.scss */
+/* line 225, ../sass/style.scss */
 #tasks .btn-wrapper {
   width: 60;
   height: 60;
@@ -444,12 +453,12 @@ em {
   box-sizing: border-box;
 }
 
-/* line 228, ../sass/style.scss */
+/* line 233, ../sass/style.scss */
 .container-btns {
   margin: 12px;
 }
 
-/* line 232, ../sass/style.scss */
+/* line 237, ../sass/style.scss */
 .btn-auth {
   width: 100px;
   height: 100px;
@@ -460,20 +469,20 @@ em {
   position: absolute;
 }
 
-/* line 242, ../sass/style.scss */
+/* line 247, ../sass/style.scss */
 .strong {
   font-weight: 400;
   color: #999999;
 }
 
-/* line 247, ../sass/style.scss */
+/* line 252, ../sass/style.scss */
 .clear {
   clear: both;
   overflow: auto;
   height: 100%;
 }
 
-/* line 253, ../sass/style.scss */
+/* line 258, ../sass/style.scss */
 .btn {
   cursor: pointer;
   text-decoration: none;
@@ -493,22 +502,22 @@ em {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
   overflow: auto;
 }
-/* line 270, ../sass/style.scss */
+/* line 275, ../sass/style.scss */
 .btn:hover {
   background: #297aa3;
   color: #ffffff;
 }
-/* line 275, ../sass/style.scss */
+/* line 280, ../sass/style.scss */
 .btn i {
   margin-right: 5px;
 }
-/* line 279, ../sass/style.scss */
+/* line 284, ../sass/style.scss */
 .btn.icon {
   font-size: 24px;
   line-height: 24px;
   padding: 8px;
 }
-/* line 285, ../sass/style.scss */
+/* line 290, ../sass/style.scss */
 .btn span {
   padding-top: 2px;
   float: left;
@@ -516,18 +525,18 @@ em {
   *zoom: 1;
 }
 
-/* line 294, ../sass/style.scss */
+/* line 299, ../sass/style.scss */
 footer .btn-wrapper {
   width: 280px;
   padding: 0px 20px 0px 20px;
   box-sizing: border-box;
 }
-/* line 299, ../sass/style.scss */
+/* line 304, ../sass/style.scss */
 footer .btn-add {
   width: 30%;
   height: 40px;
 }
-/* line 303, ../sass/style.scss */
+/* line 308, ../sass/style.scss */
 footer .btn-delete {
   width: 30%;
   height: 40px;
@@ -538,7 +547,7 @@ footer .btn-delete {
   background: linear-gradient(top, #e6e6e6, #cccccc);
   border-color: #b3b3b3;
 }
-/* line 309, ../sass/style.scss */
+/* line 314, ../sass/style.scss */
 footer .btn-edit {
   width: 30%;
   height: 40px;
@@ -550,14 +559,14 @@ footer .btn-edit {
   border-color: #b3b3b3;
 }
 
-/* line 317, ../sass/style.scss */
+/* line 322, ../sass/style.scss */
 .placeholder {
   border: 2px #ddd dotted;
   margin: 10px 0px 10px 0px;
   height: 50px;
 }
 
-/* line 323, ../sass/style.scss */
+/* line 328, ../sass/style.scss */
 .banner {
   position: absolute;
   z-index: 10;
@@ -569,7 +578,7 @@ footer .btn-edit {
 }
 
 /* Checkbox hack */
-/* line 334, ../sass/style.scss */
+/* line 339, ../sass/style.scss */
 .input-checkbox-alt {
   opacity: 0;
   position: absolute;
@@ -577,14 +586,14 @@ footer .btn-edit {
   cursor: pointer;
 }
 
-/* line 341, ../sass/style.scss */
+/* line 346, ../sass/style.scss */
 .input-checkbox-alt + label {
   cursor: pointer;
   display: inline;
   margin-left: 23px;
 }
 
-/* line 347, ../sass/style.scss */
+/* line 352, ../sass/style.scss */
 .input-checkbox-alt + label:before {
   content: "\f096";
   cursor: pointer;
@@ -594,12 +603,12 @@ footer .btn-edit {
   vertical-align: middle;
 }
 
-/* line 357, ../sass/style.scss */
+/* line 362, ../sass/style.scss */
 .input-checkbox-alt:checked + label {
   /*color: #444;*/
 }
 
-/* line 358, ../sass/style.scss */
+/* line 363, ../sass/style.scss */
 .input-checkbox-alt:checked + label:before {
   /*color: green;*/
   content: "\f046";
@@ -607,23 +616,23 @@ footer .btn-edit {
 
 /* Responsiveness */
 @media screen and (min-width: 800px) {
-  /* line 363, ../sass/style.scss */
+  /* line 368, ../sass/style.scss */
   .open-lists {
     display: none;
   }
 
-  /* line 364, ../sass/style.scss */
+  /* line 369, ../sass/style.scss */
   #lists {
     display: block;
   }
 
-  /* line 365, ../sass/style.scss */
+  /* line 370, ../sass/style.scss */
   #tasks {
     left: 281px;
   }
 }
 /* Login */
-/* line 370, ../sass/style.scss */
+/* line 375, ../sass/style.scss */
 .login-overlay {
   background: #444444;
   color: #ffffff;
@@ -634,12 +643,12 @@ footer .btn-edit {
   width: 100%;
   height: 100%;
 }
-/* line 379, ../sass/style.scss */
+/* line 384, ../sass/style.scss */
 .login-overlay .centered {
   margin: 0 auto;
 }
 
-/* line 384, ../sass/style.scss */
+/* line 389, ../sass/style.scss */
 .add-list {
   display: block;
   background: transparent;
@@ -652,25 +661,37 @@ footer .btn-edit {
   width: 100%;
 }
 
-/* line 396, ../sass/style.scss */
+/* line 401, ../sass/style.scss */
 .add-task {
   border: 1px #ddd solid;
   font-size: 18px;
   width: 100%;
   display: block;
   outline: 0;
+  padding: 12px;
 }
-/* line 402, ../sass/style.scss */
+/* line 408, ../sass/style.scss */
 .add-task:focus {
   border-color: #3399cc;
 }
 
-/* line 407, ../sass/style.scss */
+/* line 413, ../sass/style.scss */
 .right {
   float: right;
 }
 
-/* line 408, ../sass/style.scss */
+/* line 414, ../sass/style.scss */
 .left {
   float: left;
+}
+
+/* line 416, ../sass/style.scss */
+.actions {
+  padding: 4px 0;
+}
+
+/* line 420, ../sass/style.scss */
+.clear {
+  overflow: hidden;
+  *zoom: 1;
 }
